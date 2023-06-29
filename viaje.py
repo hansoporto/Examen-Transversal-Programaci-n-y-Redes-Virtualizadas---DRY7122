@@ -1,4 +1,5 @@
 import requests
+import git
 
 def obtener_distancia(ciudad_chile, ciudad_latinoamerica):
     url = "http://www.mapquestapi.com/directions/v2/route"
@@ -59,3 +60,20 @@ while True:
         print("4.- Saldrás de", ciudad_chile, "y llegarás a", ciudad_latinoamerica, "recorriendo una distancia de", distancia, "kilómetros.")
         print("5.- El viaje tomará aproximadamente", round(tiempo_horas, 3), "horas,", round(tiempo_minutos, 3), "minutos, y", round(tiempo_segundos, 3), "segundos.")
         print("6.- Se recomienda cargar", combustible_requerido, "litros de combustible antes de partir.")
+
+
+repo_path = '/labs/devnet-src/examen-transversal/'
+
+
+repo = git.Repo(repo_path)
+
+repo.index.add(['viaje.py'])
+
+repo.index.commit("Agregar script de medición de distancia en viajes")
+
+origin = repo.remote(name='origin')
+origin_url = 'https://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@github.com/hansoporto/Examen-Transversal-Programaci-n-y-Redes-Virtualizadas---DRY7122'  
+origin.set_url(origin_url)
+
+
+origin.push()
